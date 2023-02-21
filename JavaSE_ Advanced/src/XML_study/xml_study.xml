@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--根标签有且只能有一个-->
+<student>
+    <people id="1">
+        <name>张三</name>
+        <sex>男</sex>
+        <age>18</age>
+        <!--成绩-->
+        <secore>
+            <Math>100</Math>
+            <English>100</English>
+            <Computer>100</Computer>
+        </secore>
+    </people>
+    <people id="2">
+        <name>mike</name>
+        <sex>男</sex>
+        <age>19</age>
+        <!--成绩-->
+        <secore>
+            <Math>95</Math>
+            <English>90</English>
+            <Computer>90</Computer>
+        </secore>
+    </people>
+
+    <spl>
+        select * from user where age &lt; 18
+        select * from user where age &lt; 18 &amp;&amp; age &gt; 10
+        <![CDATA[
+        select * from user where age < 18
+        ]]>
+    </spl>
+</student>

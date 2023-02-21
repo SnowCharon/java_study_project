@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<persons
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.bilibili.com/"
+        xsi:schemaLocation="https://www.bilibili.com/ person.xsd"
+>
+    <person id="1">
+        <name>Michael</name>
+        <age>18</age>
+    </person>
+</persons>

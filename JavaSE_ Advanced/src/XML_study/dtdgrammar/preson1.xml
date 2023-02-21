@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE persons SYSTEM 'persondtd.dtd'>
+
+<persons>
+    <person>
+        <name>Michael</name>
+        <age>18</age>
+    </person>
+</persons>

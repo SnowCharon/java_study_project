@@ -1,0 +1,10 @@
+<!--'+'表示可以多次出现-->
+<!ELEMENT persons (person+)>
+<!--','表示两者都有并且顺序必须按这个来，'|'表示二者选其一-->
+<!ELEMENT person (name,age)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+
+<!--#FIXED:约束值  #REQUIRED:必须的  #IMPLIED：非必须-->
+<!--定义属性的名称-->
+<!ATTLIST person id CDATA #FIXED "p1">
