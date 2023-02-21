@@ -1,0 +1,120 @@
+package zhuxuanyu.reggie.controller;
+
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.bind.annotation.*;
+import zhuxuanyu.reggie.common.Result;
+import zhuxuanyu.reggie.dto.SetmealDto;
+import zhuxuanyu.reggie.generator.entity.Setmeal;
+import zhuxuanyu.reggie.generator.service.CategoryService;
+import zhuxuanyu.reggie.generator.service.SetmealDishService;
+import zhuxuanyu.reggie.generator.service.SetmealService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * @title: SetmealController
+ * @Author 竹玄羽
+ * @Date: 2023/2/19 18:18
+ * 套餐管理
+ */
+@Slf4j
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/setmeal")
+public class SetmealController {
+    private final SetmealService setmealService;
+
+    private final SetmealDishService setmealDishService;
+
+    private final CategoryService categoryService;
+    /**
+     * 保存套餐
+     * @param setmealDto
+     * @return
+     */
+    @PostMapping
+    public Result<String> save(@RequestBody SetmealDto setmealDto){
+        log.info("setmealDto:{}",setmealDto);
+        setmealService.saveWithDish(setmealDto);
+        return Result.success("套餐保存成功！");
+    }
+
+    /**
+     * 套餐分页查询
+     * @param page
+     * @param pageSize
+     * @param name
+     * @return
+     */
+    @GetMapping("/page")
+    public Result<Page<SetmealDto>> page(int page,int pageSize,String name){
+        Page<Setmeal> pageInfo = new Page<>(page,pageSize);
+        Page<SetmealDto> myPage = new Page<>(page,pageSize);
+        LambdaQueryWrapper<Setmeal> wrapper = new LambdaQueryWrapper<>();
+        //添加查询条件
+        wrapper.like(name!=null,Setmeal::getName,name);
+        wrapper.orderByDesc(Setmeal::getUpdateTime);
+        setmealService.page(pageInfo,wrapper);
+
+        BeanUtils.copyProperties(pageInfo,myPage);
+        List<SetmealDto> list = pageInfo.getRecords().stream().map(item->{
+            SetmealDto setmealDto = new SetmealDto();
+            BeanUtils.copyProperties(item,setmealDto);
+            setmealDto.setCategoryName(categoryService.getById(item.getCategoryId()).getName());
+            return setmealDto;
+        }).collect(Collectors.toList());
+
+        myPage.setRecords(list);
+        return Result.success(myPage);
+    }
+
+    @GetMapping("/{id}")
+    public Result<SetmealDto> getInfo(@PathVariable Long id){
+        SetmealDto setmealDto = setmealService.getByIdWithDish(id);
+        return Result.success(setmealDto);
+    }
+
+    /**
+     * 删除/批量删除
+     */
+    @DeleteMapping
+    public Result<String> delete(@RequestParam("ids") List<Long> list){
+        setmealService.removeWithDish(list);
+return Result.success("删除成功！");
+    }
+
+    /**
+     * 更改套餐状态
+     * @param status 状态
+     * @param list 参数列表
+     * @return 返回是否成功
+     */
+    @PostMapping("/status/{status}")
+    public Result<String> state(@PathVariable Integer status, @RequestParam("ids") Long[] list){
+        log.info("list:{}",list);
+        LambdaQueryWrapper<Setmeal> wrapper = new LambdaQueryWrapper<>();
+        for (Long item : list) {
+             Setmeal setmeal = setmealService.getById(item);
+            setmeal.setStatus(status);
+            wrapper.eq(Setmeal::getId,item);
+            setmealService.update(setmeal,wrapper);
+            wrapper.clear();
+        }
+        return Result.success("状态修改成功！");
+    }
+
+    @GetMapping("/list")
+    public Result<List<Setmeal>> list(Setmeal setmeal) {
+        LambdaQueryWrapper<Setmeal> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
+        wrapper.eq(Setmeal::getStatus, 1);
+        wrapper.orderByDesc(Setmeal::getUpdateTime);
+        List<Setmeal> setmealList = setmealService.list(wrapper);
+        return Result.success(setmealList);
+    }
+}
