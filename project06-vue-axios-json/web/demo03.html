@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="script/vue.js"></script>
+    <script language="JavaScript" src="script/demo03.js"></script>
+</head>
+<body>
+<div id="div0">
+    <table>
+        <tr>
+            <th>名称</th>
+            <th>单价</th>
+            <th>库存</th>
+            <th>备注</th>
+        </tr>
+        <tr v-for="fruit in fruitList">
+            <td>{{fruit.fname}}</td>
+            <td>{{fruit.price}}</td>
+            <td>{{fruit.fcount}}</td>
+            <td>{{fruit.remark}}</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

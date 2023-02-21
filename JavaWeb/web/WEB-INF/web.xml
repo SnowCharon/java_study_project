@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--    Servlet声明
+        <servlet>
+            <servlet-name>ServletStudy</servlet-name>
+            <servlet-class>servletstudy.ServletDemo4</servlet-class>
+        </servlet>
+
+        Servlet映射
+        <servlet-mapping>
+            <servlet-name>ServletStudy</servlet-name>
+            <url-pattern>/ServletStudy</url-pattern>
+        </servlet-mapping>-->
+
+
+    <!--    Demo3Servlet生命周期-->
+    <!--      Servlet声明-->
+    <servlet>
+        <servlet-name>ServletLife</servlet-name>
+        <servlet-class>servletstudy.ServletLife</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletLife</servlet-name>
+        <url-pattern>/ServletLife</url-pattern>
+    </servlet-mapping>
+
+    <!--    Servlet多映射-->
+    <servlet>
+        <servlet-name>ServletStudy</servlet-name>
+        <servlet-class>servletstudy.ServletDemo5</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletStudy</servlet-name>
+        <url-pattern>/shop/*</url-pattern>
+    </servlet-mapping>
+
+    <!--    ServletConfig配置-->
+    <servlet>
+        <servlet-name>ServletConfig</servlet-name>
+        <servlet-class>servletstudy.ServletConfigStudy</servlet-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>desc</param-name>
+            <param-value>This is ServletConfig</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ServletConfig</servlet-name>
+        <url-pattern>/ServletConfig</url-pattern>
+    </servlet-mapping>
+
+    <!--    配置Servlet-->
+    <servlet>
+        <servlet-name>ServletContext</servlet-name>
+        <servlet-class>servletstudy.ServletContext</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletContext</servlet-name>
+        <url-pattern>/ServletContext</url-pattern>
+    </servlet-mapping>
+    <!--    配置ServletContext-->
+    <context-param>
+        <param-name>globalEncoding</param-name>
+        <param-value>UTF-8</param-value>
+    </context-param>
+    <context-param>
+        <param-name>globalDesc</param-name>
+        <param-value>This is ServletContext</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>ServletSession</servlet-name>
+        <servlet-class>servletstudy.ServletSession</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSession</servlet-name>
+        <url-pattern>/ServletSession</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Demo1</servlet-name>
+        <servlet-class>servletstudy.servletchange.Demo1</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo1</servlet-name>
+        <url-pattern>/Demo1</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Demo2</servlet-name>
+        <servlet-class>servletstudy.servletchange.Demo2</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo2</servlet-name>
+        <url-pattern>/Demo2</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Demo3</servlet-name>
+        <servlet-class>servletstudy.servletchange.Demo3</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo3</servlet-name>
+        <url-pattern>/Demo3</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Demo4</servlet-name>
+        <servlet-class>servletstudy.servletchange.Demo4</servlet-class>
+        <!--        <load-on-startup>1</load-on-startup>-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Demo4</servlet-name>
+        <url-pattern>/Demo4</url-pattern>
+
+    </servlet-mapping>
+</web-app>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script language="JavaScript" src="script/vue.js"></script>
+    <script src="script/axios.min.js"></script>
+    <script language="JavaScript" src="script/demo09_Axios_Json.js"></script>
+</head>
+<body>
+<div id="div0">
+    uname:<input type="text" v-model="uname">
+    <br>
+    pwd:<input type="text" v-model="pwd">
+    <br>
+    <input @click="axios02" type="button" value="发送一个JSON格式的参数值的异步请求">
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="script/vue.js"></script>
+    <script src="script/trydo.js"></script>
+</head>
+<body>
+<div id="try">
+    <table id="appTable">
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>年龄</th>
+            <th>专业</th>
+        </tr>
+        <tr v-for="employee in employeeList">
+            <td>{{employee.empId}}</td>
+            <td>{{employee.empName}}</td>
+            <td>{{employee.empAge}}</td>
+            <td>{{employee.empSubject}}</td>
+        </tr>
+    </table>
+
+    <!-- 四个文本框、显示收集到的文本框数据的p标签、按钮这三个部分需要共享数据，所以要放在同一个app中 -->
+    <div id="appDiv">
+
+        <!-- 第一部分：四个文本框 -->
+        编号：<input type="text" v-model="empId"/><br/>
+        姓名：<input type="text" v-model="empName"/><br/>
+        年龄：<input type="text" v-model="empAge"/><br/>
+        专业：<input type="text" v-model="empSubject"/><br/>
+
+        <!-- 第二部分：显示收集到的文本框数据的p标签 -->
+        <p>{{empId}} {{empName}} {{empAge}} {{empSubject}}</p>
+
+        <!-- 第三部分：按钮 -->
+        <button type="button" v-on:click="addRecord">添加记录</button>
+    </div>
+</div>
+</body>
+</html>

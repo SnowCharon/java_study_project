@@ -1,0 +1,51 @@
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <link href="css/add.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div id="div_container">
+    <div id="div_fruit_list">
+        <p class="center f30">新增库存信息</p>
+        <!--<form action="add.do" method="post">-->
+        <!--<form th:action="@{/fruit.do}" method="post">-->
+        <form action="fruit.do" method="post">
+            <input name="operate" type="hidden" value="add"/>
+            <table id="tbl_fruit">
+                <tr>
+                    <th class="w20">名称：</th>
+                    <!-- <td><input type="text" name="fname" th:value="${fruit.fname}"/></td> -->
+                    <td><label>
+                        <input name="fname" type="text"/>
+                    </label></td>
+                </tr>
+                <tr>
+                    <th class="w20">单价：</th>
+                    <td><label>
+                        <input name="price" type="text"/>
+                    </label></td>
+                </tr>
+                <tr>
+                    <th class="w20">库存：</th>
+                    <td><label>
+                        <input name="fcount" type="text"/>
+                    </label></td>
+                </tr>
+                <tr>
+                    <th class="w20">备注：</th>
+                    <td><label>
+                        <input name="remark" type="text"/>
+                    </label></td>
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="添加"/>
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

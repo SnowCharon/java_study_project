@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script language="JavaScript" src="script/vue.js"></script>
+    <script language="JavaScript" src="script/demo02.js"></script>
+</head>
+<body>
+<div id="div0">
+    <span>{{msg}}</span>
+</div>
+
+<div id="app">
+    <!-- v-bind:value表示将value属性交给Vue来进行管理，也就是绑定到Vue对象 -->
+    <!-- vueValue是一个用来渲染属性值的表达式，相当于标签体中加{{}}的表达式 -->
+    <input type="text" v-bind="vueValue1"/>
+    <!-- 同样的表达式，在标签体内通过{{}}告诉Vue这里需要渲染； -->
+    <!-- 在HTML标签的属性中，通过v-bind:属性名="表达式"的方式告诉Vue这里要渲染 -->
+    <p>{{vueValue1}}</p>
+</div>
+
+
+<div id="doubleApp">
+    <!-- v-bind:属性名 效果是从Vue对象渲染到页面 -->
+    <!-- v-model:属性名 效果不仅是从Vue对象渲染到页面，而且能够在页面上数据修改后反向修改Vue对象中的数据属性 -->
+    <input type="text" v-model.trim="vueValue2"/>
+    <p>{{vueValue2}}</p>
+</div>
+</body>
+</html>

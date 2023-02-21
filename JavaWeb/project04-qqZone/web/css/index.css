@@ -1,0 +1,28 @@
+#div0 {
+    width: 80%;
+    margin: 0 10%;
+    background-color: #E8E8FF;
+}
+
+#div_top {
+    width: 100%;
+}
+
+#div_left {
+    width: 20%;
+}
+
+#div_main {
+    width: 80%;
+}
+
+#div_bottom {
+    width: 80%;
+    border: 0 solid blue;
+}
+
+iframe {
+    width: 100%;
+    float: left;
+    border: 0px solid red;
+}
