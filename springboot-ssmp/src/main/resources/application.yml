@@ -1,0 +1,57 @@
+# 使用环境
+spring:
+  profiles:
+    # 选择要执行的组，后面覆盖前面
+    active: dev
+    # 分组
+    group:
+      # 定义分组，后面覆盖前面
+      "dev": devDB,devMVC
+      "pro": proDB,proMVC
+      "test": testMVC,testDB
+
+#  datasource:
+#    druid:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#      url: jdbc:mysql://localhost:3306/bookdb?serverTimezone=UTC
+#      username: root
+#      password: W1281409960
+#  config:
+#    activate:
+#      on-profile: dev
+
+
+---
+# 设置环境
+# 生产环境
+
+#server:
+#  port: 8080
+
+
+
+
+---
+##---
+### 开发环境
+##
+#server:
+#  port: 8081
+#
+#
+#
+#---
+## 测试环境
+#
+#server:
+#  port: 8082
+#
+#spring:
+#  config:
+#    activate:
+#      on-profile: test
+#
+#---
+
+
+

@@ -1,0 +1,16 @@
+server:
+  port: 8080
+
+logging:
+  file:
+    name: serve.log
+  logback:
+    rollingpolicy:
+      max-file-size: 4KB
+      file-name-pattern: serve.%d{yyyy-MM-dd}.%i.log
+  group:
+    heima: com.itheima
+    alibaba: com.alibaba
+  level:
+    heima: debug
+    alibaba: info

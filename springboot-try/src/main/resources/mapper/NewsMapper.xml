@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zhuxuanyu.mapper.NewsMapper">
+
+    <resultMap id="BaseResultMap" type="zhuxuanyu.pojo.News">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="headlines" column="headlines" jdbcType="VARCHAR"/>
+            <result property="src" column="src" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,headlines,src
+    </sql>
+</mapper>

@@ -1,0 +1,39 @@
+server:
+  port: 8081
+
+
+country: 中国
+
+likes:
+  - 唱
+  - 跳
+  - Rap
+  - 篮球
+  - Music
+
+users:
+  - name: 张三
+    age: 18
+  - name: 张三
+    age: 16
+  - name: 张三
+    age: 19
+
+users2:
+  -
+    name: 张三
+    age: 18
+  - name: 张三
+    age: 16
+  - name: 张三
+    age: 19
+
+spring:
+  # 项目名称
+  application:
+    name: springTry
+  datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/bookdb?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: W1281409960

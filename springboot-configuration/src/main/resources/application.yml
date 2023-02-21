@@ -1,0 +1,10 @@
+servers:
+  ipAddress: 192.168.0.1
+  port: 8080
+  timeout: 3000
+  serverTimeout: 1
+  dataSize: 10
+spring:
+  datasource:
+#    0127:会被解析成八进制
+    password: "0127"
