@@ -1,0 +1,170 @@
+
+/* 主体内容 样式 */
+.wrap {
+    /* 备选方案2 */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right top, #dc7e7e, #e17172, #e56365, #e85359, #eb404c, #e85538, #e16925, #d67b11, #bba42f, #a1c468, #92dda7, #9cf1df);
+    overflow-x: hidden;
+}
+
+
+.wrap {
+    width: 100%;
+    background: url(../img/烟雨.jpg) no-repeat fixed center;
+    background-size: cover;
+    overflow-x: hidden;
+
+}
+
+/* 头部样式 */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* z-index: 10; */
+    padding: 20px 100px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    border-bottom: double white 1px;
+    background-color: rgba(245, 241, 241, 0.5);
+}
+
+header ul {
+    padding-left: 1000px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li {
+    font-size: 20px;
+    font-weight: 400;
+    margin-left: 5px;
+    transition: all .5s linear;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+header ul li:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #4a2c79;
+    transform: scale(1.2);
+}
+
+header ul li.active {
+    background: rgba(255, 255, 255, 0.5);
+    color: #2b1055;
+}
+
+a:link, a:visited {
+    color: rgb(17, 17, 17);
+    text-decoration: none;
+}
+
+/* 导航栏部分 */
+.nav {
+    padding-right: 50px;
+
+}
+
+.nav li {
+    padding-right: 15px;
+    font-family: 'Times New Roman', Times, serif;
+
+
+}
+
+/* logo图标部分 */
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.logo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+}
+
+/*2D翻转*/
+.cartoon_0 {
+    transition: transform 2s
+    /*反转动画关键*/
+}
+
+/*利用hover设置鼠标移动效果*/
+.cartoon_0:hover {
+    transform: rotate(360deg);
+}
+
+.usingSpace {
+    width: 1200px;
+    height: 800px;
+    display: flex;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+/* form左侧  图片部分*/
+.left img {
+    width: 600px;
+    height: 100%;
+}
+
+
+/* form右侧 表单右侧 */
+.right {
+    width: 600px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user,
+.setting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 300px;
+    text-align: center;
+    /*margin: auto;*/
+    width: 70%;
+}
+
+ul li {
+    list-style: none;
+
+}
+
+button {
+    width: 200px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 40px;
+    background-image: linear-gradient(120deg, #eb404c 20%, #d67b11 100%)
+}
+
+span {
+    font-size: 16px;
+}
