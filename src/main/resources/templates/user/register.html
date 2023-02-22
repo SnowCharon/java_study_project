@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link class="" href="../CSS/register.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="nav">
+        <!-- 导航栏 -->
+
+        <ul>
+            <li class="active"><a href="index.html">首页</a></li>
+            <li><a href="content.html">文化纵览</a></li>
+            <li><a href="login.html">登录</a></li>
+            <li><a href="./register.html">注册</a></li>
+        </ul>
+
+    </div>
+
+</header>
+<div class="wrap">
+
+    <div class="logo">
+        <img src="../img/工艺品.png" alt="">
+    </div>
+    <!-- 注册验证表单 -->
+    <div class="form" id="form">
+        <div class="left">
+            <!-- <video src="video/video.mp4" muted loop autoplay></video> -->
+            <img alt="欢迎领略中华文化魅力" src="../img/b5.jpg">
+        </div>
+        <div class="right">
+            <div class="right-con">
+                <form class="myForm" id="register" method="get" name="myForm">
+                    <h1>新用户注册</h1>
+                    <label class="input_height" for="userName">
+                        <span>用 户 名</span>
+                        <input class="text" id="userName" name="userName" placeholder="用户名须为1-7位的汉字" required="required"
+                               type="text">
+                    </label>
+                    <label class="input_height" for="userPassword">
+                        <span>密 码</span>
+                        <input class="text" id="userPassword" name="userPassword" placeholder="密码须为6-16位英文字母、下划线或者数字"
+                               required="required"
+                               type="password">
+                    </label>
+
+                    <input class="button" type="submit" value="注册">
+                    <input class="button" type="reset" value="重置">
+
+                </form>
+                <!--底部页脚-->
+                <div class="foot">
+                    <span>注册即表示您同意</span>
+                    <a href="#" target="_blank">用户协议</a>
+                    <span>和</span>
+                    <a href="#" target="_blank">隐私条款</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../JS/register.js"></script>
+
+</html>

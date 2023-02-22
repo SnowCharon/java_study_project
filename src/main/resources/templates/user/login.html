@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/denglu.css" class="">
+</head>
+<body>
+<script src="../JS/denglu.js"></script>
+<header>
+    <div class="nav">
+        <!-- 导航栏 -->
+        <ul>
+            <li class="active"><a href="index.html">首页</a></li>
+            <li><a href="content.html">文化纵览</a></li>
+            <li><a href="./login.html">登录</a></li>
+            <li><a href="register.html">注册</a></li>
+        </ul>
+
+    </div>
+
+</header>
+<div class="wrap">
+    <!-- 登录验证表单 -->
+    <div class="logo">
+        <img src="../img/工艺品.png" alt="">
+    </div>
+
+    <form id="myForm" name="myForm">
+        <div id="form" class="form">
+            <div class="left">
+                <img src="../img/4.webp" alt="">
+            </div>
+            <div class="right">
+                <div class="right-con">
+                    <h1>用 户 登 录</h1>
+                    <label for="userName">用 户 名</label>
+                    <input id="userName" name="userName" class="text" type="text">
+                    <label for="userPassword">密 码</label>
+                    <input id="userPassword" name="userPassword" class="text" type="password">
+                    <div id="validate" style="color:red"></div>
+                        <button class="btn" id="login" type="button" onclick="checkForm()">登 录</button>
+                    <button class="btn" type="reset" onclick="resetForm()">重 置</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
