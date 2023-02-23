@@ -55,6 +55,10 @@ public class OrdersServiceImpl extends ServiceImpl<OrdersMapper, Orders>
         if (addressBook==null){
             throw new CustomException("用户地址信息有误,不能下单！");
         }
+        if (user.getName()==null){
+            user.setName(addressBook.getConsignee());
+        }
+
         //完成下单——向订单表和订单明细表插入数据
         //订单号
         long orderId = IdWorker.getId();
