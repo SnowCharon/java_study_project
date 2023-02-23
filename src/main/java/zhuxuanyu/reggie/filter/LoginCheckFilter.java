@@ -2,7 +2,9 @@ package zhuxuanyu.reggie.filter;
 
 
 import com.alibaba.fastjson2.JSON;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.AntPathMatcher;
 import zhuxuanyu.reggie.common.BaseContext;
 import zhuxuanyu.reggie.common.Result;
@@ -19,8 +21,11 @@ import java.io.IOException;
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
 @Slf4j
 public class LoginCheckFilter implements Filter{
-    //路径匹配器，支持通配符
+    /**
+     * 路径匹配器，支持通配符
+     */
     public static final AntPathMatcher PATH_MATCHER = new AntPathMatcher();
+
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -28,7 +33,7 @@ public class LoginCheckFilter implements Filter{
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         //1、获取本次请求的URI
-        String requestURI = request.getRequestURI();// /backend/index.html
+        String requestURI = request.getRequestURI();
 
         log.info("拦截到请求：{}",requestURI);
 

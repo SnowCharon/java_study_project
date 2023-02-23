@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import zhuxuanyu.reggie.common.BaseContext;
 import zhuxuanyu.reggie.common.Result;
@@ -29,6 +31,7 @@ public class AddressBookController {
      * 新增
      */
     @PostMapping
+    @CacheEvict(value = "addressCache",allEntries = true)
     public Result<AddressBook> save(@RequestBody AddressBook addressBook) {
         addressBook.setUserId(BaseContext.getCurrentId());
         log.info("addressBook:{}", addressBook);
@@ -40,6 +43,7 @@ public class AddressBookController {
      * 设置默认地址
      */
     @PutMapping("default")
+    @CacheEvict(value = "addressCache",allEntries = true)
     public Result<AddressBook> setDefault(@RequestBody AddressBook addressBook) {
         log.info("addressBook:{}", addressBook);
         LambdaUpdateWrapper<AddressBook> wrapper = new LambdaUpdateWrapper<>();
@@ -58,6 +62,7 @@ public class AddressBookController {
      * 根据id查询地址
      */
     @GetMapping("/{id}")
+    @Cacheable(value = "addressCache",key = "#id")
     public Result get(@PathVariable Long id) {
         AddressBook addressBook = addressBookService.getById(id);
         if (addressBook != null) {
@@ -71,6 +76,7 @@ public class AddressBookController {
      * 查询默认地址
      */
     @GetMapping("default")
+    @Cacheable(value = "addressCache",key = "'default:' + #id")
     public Result<AddressBook> getDefault() {
         LambdaQueryWrapper<AddressBook> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(AddressBook::getUserId, BaseContext.getCurrentId());
@@ -104,7 +110,13 @@ public class AddressBookController {
     }
 
 
+    /**
+     * 修改地址
+     * @param addressBook 地址对象
+     * @return 返回修改结果
+     */
     @PutMapping
+    @CacheEvict(value = "addressCache",key = "#addressBook.id")
     public Result<String> update(@RequestBody AddressBook addressBook){
         LambdaQueryWrapper<AddressBook> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(AddressBook::getId,addressBook.getId());

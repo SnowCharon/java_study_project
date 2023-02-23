@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +16,7 @@ import zhuxuanyu.reggie.generator.entity.User;
 import zhuxuanyu.reggie.generator.service.UserService;
 import zhuxuanyu.reggie.utils.ValidateCodeUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -29,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/user")
 public class UserController {
     private final UserService userService;
-    private final RedisTemplate<String, String> redisTemplate;
+    private final RedisTemplate<Object, Object> redisTemplate;
 
     /**
      * 发送手机短信验证码
@@ -70,7 +73,7 @@ public class UserController {
         String code = map.get("code");
 
         //从redis获取验证码
-        String codeSession = redisTemplate.opsForValue().get(phone);
+        String codeSession = (String) redisTemplate.opsForValue().get(phone);
 
         if (codeSession != null && codeSession.equals(code)) {
             //比对验证码，成功了就通过
@@ -88,9 +91,14 @@ public class UserController {
             session.setAttribute("user", user.getId());
             //如果用户登陆成功，删除redis缓存验证码
             redisTemplate.delete(phone);
-
             return Result.success(user);
         }
         return Result.error("登陆失败！");
+    }
+
+    @PostMapping("/loginout")
+    public Result<String> logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("user");
+        return Result.success("退出登录！");
     }
 }

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 import zhuxuanyu.reggie.common.Result;
 import zhuxuanyu.reggie.dto.SetmealDto;
@@ -38,6 +40,7 @@ public class SetmealController {
      * @return
      */
     @PostMapping
+    @CacheEvict(value = "setmealCache",key = "#setmealDto.categoryId+'_'+1")
     public Result<String> save(@RequestBody SetmealDto setmealDto){
         log.info("setmealDto:{}",setmealDto);
         setmealService.saveWithDish(setmealDto);
@@ -73,6 +76,12 @@ public class SetmealController {
         return Result.success(myPage);
     }
 
+
+    /**
+     * 获取单个的套餐信息
+     * @param id
+     * @return
+     */
     @GetMapping("/{id}")
     public Result<SetmealDto> getInfo(@PathVariable Long id){
         SetmealDto setmealDto = setmealService.getByIdWithDish(id);
@@ -83,6 +92,7 @@ public class SetmealController {
      * 删除/批量删除
      */
     @DeleteMapping
+    @CacheEvict(value = "setmealCache",allEntries = true)
     public Result<String> delete(@RequestParam("ids") List<Long> list){
         setmealService.removeWithDish(list);
 return Result.success("删除成功！");
@@ -108,7 +118,14 @@ return Result.success("删除成功！");
         return Result.success("状态修改成功！");
     }
 
+
+    /**
+     * 批量获取套餐数据
+     * @param setmeal 套餐
+     * @return 返回套餐列表
+     */
     @GetMapping("/list")
+    @Cacheable(value = "setmealCache",key = "#setmeal.categoryId + '_' + #setmeal.status")
     public Result<List<Setmeal>> list(Setmeal setmeal) {
         LambdaQueryWrapper<Setmeal> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());

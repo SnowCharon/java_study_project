@@ -1,6 +1,8 @@
 package zhuxuanyu.reggie.common;
 
 import lombok.Data;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +10,7 @@ import java.util.Map;
  * @author zhuxuanyu
  */
 @Data
-public class Result<T> {
+public class Result<T> implements Serializable {
     private Integer code;
     private String msg;
     private T data;
