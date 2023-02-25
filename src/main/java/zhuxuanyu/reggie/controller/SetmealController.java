@@ -2,6 +2,10 @@ package zhuxuanyu.reggie.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -27,6 +31,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@Api(tags = "套餐相关接口")
 @RequestMapping("/setmeal")
 public class SetmealController {
     private final SetmealService setmealService;
@@ -55,6 +60,12 @@ public class SetmealController {
      * @return
      */
     @GetMapping("/page")
+    @ApiOperation("套餐分页查询接口")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "page",value = "页码",required = true),
+            @ApiImplicitParam(name = "pageSize",value = "每页大小",required = true),
+            @ApiImplicitParam(name = "name",value = "查询条件",required = false)
+    })
     public Result<Page<SetmealDto>> page(int page,int pageSize,String name){
         Page<Setmeal> pageInfo = new Page<>(page,pageSize);
         Page<SetmealDto> myPage = new Page<>(page,pageSize);
