@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import zhuxuanyu.reggie.common.Result;
 import zhuxuanyu.reggie.generator.entity.User;
 import zhuxuanyu.reggie.generator.service.UserService;
+import zhuxuanyu.reggie.utils.SMSUtils;
 import zhuxuanyu.reggie.utils.ValidateCodeUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,7 @@ public class UserController {
             log.info("code:{}", code);
 
             //调用阿里云短信服务发送短信
-            //SMSUtils.sendMessage("竹玄羽的博客", "SMS_270380748", phone, code);
+            SMSUtils.sendMessage("竹玄羽的博客", "SMS_270380748", phone, code);
 
             //生成的验证码存入redis，并且有效期为五分钟
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
